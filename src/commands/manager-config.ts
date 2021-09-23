@@ -36,7 +36,7 @@ export class Command extends Commands.Command {
      * @type {string}
      * @memberof Command
      */
-    public signature: string = "config:manager";
+    public signature: string = "manager:config";
 
     /**
      * The console command description.
