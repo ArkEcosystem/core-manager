@@ -2,7 +2,6 @@ import { Container } from "@arkecosystem/core-cli";
 import { Console } from "@arkecosystem/core-test-framework";
 import { Command } from "../../src/commands/manager-start";
 import os from "os";
-import { resolve } from "path";
 import { dirSync, setGracefulCleanup } from "tmp";
 
 let cli;
@@ -34,7 +33,7 @@ describe("StartCommand", () => {
                 },
                 name: "ark-manager",
                 node_args: undefined,
-                script: resolve(__dirname, "../../../core-manager/bin/run"),
+                script: __filename,
             },
             { "kill-timeout": 30000, "max-restarts": 5, name: "ark-manager" },
         );
