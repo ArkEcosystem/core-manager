@@ -94,6 +94,7 @@
         "nock": "^13.0.0",
         "npm-check-updates": "^9.0.0",
         "prettier": "^2.0.2",
+        "prompts": "2.4.0",
         "rimraf": "^3.0.2",
         "sinon": "^9.0.1",
         "tmp": "^0.2.0",
