@@ -21,13 +21,6 @@
         "test": "jest"
     },
     "dependencies": {
-        "@arkecosystem/core": "^3.0.0",
-        "@arkecosystem/core-cli": "^3.0.0",
-        "@arkecosystem/core-database": "^3.0.0",
-        "@arkecosystem/core-kernel": "^3.0.0",
-        "@arkecosystem/core-logger-pino": "^3.0.0",
-        "@arkecosystem/core-snapshots": "^3.0.0",
-        "@arkecosystem/crypto": "^3.0.0",
         "@hapi/basic": "^6.0.0",
         "@hapi/hapi": "^20.0.3",
         "@hapist/json-rpc": "^0.2.0",
@@ -103,6 +96,15 @@
         "typescript": "^3.8.3",
         "typesync": "^0.7.0",
         "uuid": "^8.0.0"
+    },
+    "peerDependencies": {
+        "@arkecosystem/core": "^3.0.0",
+        "@arkecosystem/core-cli": "^3.0.0",
+        "@arkecosystem/core-database": "^3.0.0",
+        "@arkecosystem/core-kernel": "^3.0.0",
+        "@arkecosystem/core-logger-pino": "^3.0.0",
+        "@arkecosystem/core-snapshots": "^3.0.0",
+        "@arkecosystem/crypto": "^3.0.0"
     },
     "engines": {
         "node": ">=10.x"

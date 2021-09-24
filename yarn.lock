@@ -33,7 +33,7 @@
     joi "17.4.2"
     xstate "4.23.4"
 
-"@arkecosystem/core-cli@3.0.0", "@arkecosystem/core-cli@^3.0.0":
+"@arkecosystem/core-cli@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@arkecosystem/core-cli/-/core-cli-3.0.0.tgz#6f0d5601d41d44d882c291c2a714d7a775ec9c4d"
   integrity sha512-+ozZJepDQypFxyKVcEzlrbDRPP6j8mTlmGoLYo2dr9J/sw8D57YNi4bkKa6pOGcP6O1g3fl8NKe9JA0YvNe6Rg==
@@ -64,7 +64,7 @@
     type-fest "0.21.3"
     yargs-parser "20.2.9"
 
-"@arkecosystem/core-database@3.0.0", "@arkecosystem/core-database@^3.0.0":
+"@arkecosystem/core-database@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@arkecosystem/core-database/-/core-database-3.0.0.tgz#48b6ec23301d953bc28472f5f58dcfa1c154b0a3"
   integrity sha512-GqLKQd6JoQlIb5AukhCknukyEe3lkVd8BEiZU4ua8laOZYXJSCZwMCdLBrYxMELTU1l5nwUf97eiUal+0g3ZCA==
@@ -91,7 +91,7 @@
     node-forge "0.10.0"
     wif "2.0.6"
 
-"@arkecosystem/core-kernel@3.0.0", "@arkecosystem/core-kernel@^3.0.0":
+"@arkecosystem/core-kernel@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@arkecosystem/core-kernel/-/core-kernel-3.0.0.tgz#4859eb7c13d4bd5a9df122025c852a5c54f2c953"
   integrity sha512-+EKmeMjhmRleUtDo4ctZKYfLze898EcAJ4BeAAeePL+zBUCGe9PdjQg3DvBeOrgm2CRDKD6F0DSivkFvTGq/NA==
@@ -118,7 +118,7 @@
     semver "6.3.0"
     type-fest "0.21.3"
 
-"@arkecosystem/core-logger-pino@3.0.0", "@arkecosystem/core-logger-pino@^3.0.0":
+"@arkecosystem/core-logger-pino@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@arkecosystem/core-logger-pino/-/core-logger-pino-3.0.0.tgz#2e0f5c47e51d9d1f62392e05528377efe9cfad68"
   integrity sha512-DpfRTPM5sECEHCFSUkiD086M80NW00l4CeUaMIrCeYEkDSIP5JOzx4ego6S4D/NtrrjE0DLb6IBqgy3qzQTarA==
@@ -193,7 +193,7 @@
     semver "6.3.0"
     ws "7.5.5"
 
-"@arkecosystem/core-snapshots@3.0.0", "@arkecosystem/core-snapshots@^3.0.0":
+"@arkecosystem/core-snapshots@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@arkecosystem/core-snapshots/-/core-snapshots-3.0.0.tgz#420b529851a4d85f91947df17255ec53312e01a0"
   integrity sha512-6avWTJUkY0SK+rhA/IfKxz+1GHwzeo7jFBl/F/8YOmYWSm4vQAJh9wFQ5+8HVHK/uiBtUDIjccZeVIy2nLLJSQ==
@@ -288,7 +288,7 @@
     lowdb "1.0.0"
     uuid "8.3.2"
 
-"@arkecosystem/core@3.0.0", "@arkecosystem/core@^3.0.0":
+"@arkecosystem/core@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@arkecosystem/core/-/core-3.0.0.tgz#cae98ef3f92063b252da73fe0e71ad0fa50497d2"
   integrity sha512-ffcYjgtAZ5Wh8RUcBFX8rKqKMho5R4qL76bzM/yxSKDd9eWG+3v0wnPMzY28N1fqelTrJDJWktb9fNTsFLghcA==
@@ -342,7 +342,7 @@
   resolved "https://registry.yarnpkg.com/@arkecosystem/crypto-networks/-/crypto-networks-1.2.0.tgz#7f00d8f2421923ab779b14c3d60b092c5484b44f"
   integrity sha512-ZytgxSgP4lfOUdQLvY6PyWkhvx6//V24MKv/faom9preIiamEfwEHLobFRs0cr5F1wSD7brMrLN/KcCkUw2Itw==
 
-"@arkecosystem/crypto@3.0.0", "@arkecosystem/crypto@^3.0.0":
+"@arkecosystem/crypto@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@arkecosystem/crypto/-/crypto-3.0.0.tgz#3372b56e14a68965d60d4f69e8915f2574d92406"
   integrity sha512-7f3mmmqkF24maeklF/2+LYudvoh9DJt0C+cS6UgDQKrPghENcbC1vPUhTX2qiu3aegQQsikpc9aLqh9y6VNeBQ==
