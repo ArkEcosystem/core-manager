@@ -55,7 +55,7 @@ export class ServiceProvider extends Providers.ServiceProvider {
             this.app.bind(Identifiers.CliManager).to(CliManager).inSingletonScope();
             this.app.bind(Identifiers.WorkerManager).to(WorkerManager).inSingletonScope();
 
-            const pkg: Types.PackageJson = require("../package.json");
+            const pkg: Types.PackageJson = require("@arkecosystem/core/package.json");
             this.app.bind(Identifiers.CLI).toConstantValue(ApplicationFactory.make(new Container.Container(), pkg));
         }
     }
