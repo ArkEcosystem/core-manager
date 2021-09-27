@@ -100,10 +100,7 @@
     "peerDependencies": {
         "@arkecosystem/core": "^3.0.0",
         "@arkecosystem/core-cli": "^3.0.0",
-        "@arkecosystem/core-database": "^3.0.0",
         "@arkecosystem/core-kernel": "^3.0.0",
-        "@arkecosystem/core-logger-pino": "^3.0.0",
-        "@arkecosystem/core-snapshots": "^3.0.0",
         "@arkecosystem/crypto": "^3.0.0"
     },
     "engines": {
