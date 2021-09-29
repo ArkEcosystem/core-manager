@@ -83,7 +83,7 @@ describe("CliManager", () => {
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
 
-    it("should run command with a password that contains an backslash", async () => {
+    it("should run command with a password that contains a backslash", async () => {
         await cliManager.runCommand("command_name", "--network:testnet --token=ark --password='with\\backslash'");
 
         expect(mockCommand.register).toHaveBeenCalledTimes(1);
