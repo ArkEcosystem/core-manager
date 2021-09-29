@@ -67,6 +67,14 @@ describe("CliManager", () => {
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
 
+    it("should run command with a password that contains an escaped quote", async () => {
+        await cliManager.runCommand("command_name", '--network:testnet --token=ark --password=\'with\\\'quote\'');
+
+        expect(mockCommand.register).toHaveBeenCalledTimes(1);
+        expect(mockCommand.register).toHaveBeenCalledWith(["command_name", "--network:testnet", "--token=ark", "--password=with'quote"]);
+        expect(mockCommand.run).toHaveBeenCalledTimes(1);
+    });
+
     it("should throw if command does not exist", async () => {
         await expect(cliManager.runCommand("invalid_command_name")).rejects.toThrow(
             "Command invalid_command_name does not exists.",

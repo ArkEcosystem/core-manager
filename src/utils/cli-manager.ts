@@ -31,8 +31,8 @@ export class CliManager {
         // Look for:
         // - <param>: everything that start with -- and ends with an space or `=`
         // - <value> (optional) everything after the '=' until find a space
-        // - OR <quotedValue> (optional) everything after the '=' that is between quotes "'"
-        const regex = /(?<param>--[^\s|=]*)=?(?:(?:'(?<quotedValue>[^']*)')|(?<value>[^\s]*))/gm;
+        // - OR <quotedValue> (optional) everything after the '=' that is between quotes "'" (excluding escaped ones)
+        const regex = /(?<param>--[^\s|=]*)=?(?:(?:'(?<quotedValue>(?:(?:\\')|[^'])*)')|(?<value>[^\s]*))/gm;
 
         const parsedArguments: string[] = [];
 
@@ -44,7 +44,13 @@ export class CliManager {
 
             const { param, quotedValue, value } = match.groups;
 
-            const argParts = [param, quotedValue || value].filter(Boolean);
+            let escapedQuotedValue: string | undefined = undefined;
+
+            if (quotedValue) {
+                escapedQuotedValue = quotedValue.replace(/\\'/g, "'");
+            }
+
+            const argParts = [param, escapedQuotedValue || value].filter(Boolean);
 
             parsedArguments.push(argParts.join("="));
         }
