@@ -67,7 +67,7 @@ describe("CliManager", () => {
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
 
-    it("should run command with a password that contains a double quite", async () => {
+    it("should run command with a password that contains a double quote", async () => {
         await cliManager.runCommand("command_name", '--network:testnet --token=ark --password=\'with"doubleQuote\'');
 
         expect(mockCommand.register).toHaveBeenCalledTimes(1);
@@ -80,6 +80,14 @@ describe("CliManager", () => {
 
         expect(mockCommand.register).toHaveBeenCalledTimes(1);
         expect(mockCommand.register).toHaveBeenCalledWith(["command_name", "--network:testnet", "--token=ark", "--password=with'quote"]);
+        expect(mockCommand.run).toHaveBeenCalledTimes(1);
+    });
+
+    it("should run command with a password that contains an backslash", async () => {
+        await cliManager.runCommand("command_name", "--network:testnet --token=ark --password='with\\backslash'");
+
+        expect(mockCommand.register).toHaveBeenCalledTimes(1);
+        expect(mockCommand.register).toHaveBeenCalledWith(["command_name", "--network:testnet", "--token=ark", '--password=with\\backslash']);
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
 
