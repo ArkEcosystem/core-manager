@@ -1,6 +1,8 @@
 import * as Cli from "@arkecosystem/core-cli";
 import { Application, Container } from "@arkecosystem/core-kernel";
+import { readJSONSync } from "fs-extra";
 import latestVersion from "latest-version";
+import { join } from "path";
 
 import { Actions } from "../contracts";
 import { Identifiers } from "../ioc";
@@ -18,7 +20,9 @@ export class Action implements Actions.Action {
     public async execute(params: object): Promise<any> {
         return {
             currentVersion: this.app.version(),
+            installedVersion: this.getInstalledVersion(),
             latestVersion: await this.getLatestVersion(),
+            installedPluginVersion: this.getInstalledPluginVersion(),
         };
     }
 
@@ -26,6 +30,14 @@ export class Action implements Actions.Action {
         return latestVersion("@arkecosystem/core", {
             version: this.getChannel(),
         });
+    }
+
+    private getInstalledVersion(): string {
+        return readJSONSync(require.resolve("@arkecosystem/core-kernel/package.json")).version;
+    }
+
+    private getInstalledPluginVersion(): string {
+        return readJSONSync(join(__dirname, "../../package.json")).version;
     }
 
     private getChannel(): string {
