@@ -15,6 +15,9 @@ export class Action implements Actions.Action {
     @Container.inject(Identifiers.CLI)
     private readonly cli!: Cli.Application;
 
+    @Container.inject(Identifiers.Version)
+    private readonly currentPluginVersion!: string;
+
     public name = "info.coreVersion";
 
     public async execute(params: object): Promise<any> {
@@ -22,6 +25,7 @@ export class Action implements Actions.Action {
             currentVersion: this.app.version(),
             installedVersion: this.getInstalledVersion(),
             latestVersion: await this.getLatestVersion(),
+            currentPluginVersion: this.currentPluginVersion,
             installedPluginVersion: this.getInstalledPluginVersion(),
             latestPluginVersion: await this.getLatestPluginVersion(),
         };

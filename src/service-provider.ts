@@ -1,7 +1,9 @@
 import { ApplicationFactory } from "@arkecosystem/core-cli";
 import { Container, Contracts, Providers, Types } from "@arkecosystem/core-kernel";
+import { readJSONSync } from "fs-extra";
 import Joi from "joi";
 import cloneDeep from "lodash.clonedeep";
+import { join } from "path";
 
 import { ActionReader } from "./action-reader";
 import { DatabaseLogger } from "./database-logger";
@@ -20,6 +22,8 @@ import { WorkerManager } from "./workers/worker-manager";
 
 export class ServiceProvider extends Providers.ServiceProvider {
     public async register(): Promise<void> {
+        this.app.bind(Identifiers.Version).toConstantValue(readJSONSync(join(__dirname, "../package.json")).version);
+
         this.app.bind(Identifiers.WatcherDatabaseService).to(EventsDatabaseService).inSingletonScope();
         this.app.get<EventsDatabaseService>(Identifiers.WatcherDatabaseService).boot();
 

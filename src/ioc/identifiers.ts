@@ -1,4 +1,5 @@
 export const Identifiers = {
+    Version: Symbol.for("Manager<Version"),
     HTTP: Symbol.for("ManagerAPI<HTTP"),
     HTTPS: Symbol.for("ManagerAPI<HTTPS>"),
     HTTP_JSON_RPC: Symbol.for("ManagerAPI<HTTP_JSON_RPC>"),
