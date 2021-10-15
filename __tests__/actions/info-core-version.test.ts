@@ -4,6 +4,13 @@ import { Sandbox } from "@arkecosystem/core-test-framework";
 import { Container } from "@arkecosystem/core-kernel";
 import { Action } from "../../src/actions/info-core-version";
 import { Identifiers } from "../../src/ioc";
+import {readJSONSync} from "fs-extra";
+
+jest.mock("fs-extra", () => {
+    return {
+        readJSONSync: jest.fn(),
+    };
+});
 
 let sandbox: Sandbox;
 let action: Action;
@@ -31,6 +38,10 @@ describe("Info:CoreVersion", () => {
     });
 
     it("should return current and latest version", async () => {
+        readJSONSync
+            .mockReturnValueOnce({ version: "3.0.0" }) // core-kernel
+            .mockReturnValueOnce({ version: "3.0.2" }); // core-manager
+
         const promise = action.execute({});
 
         await expect(promise).toResolve();
@@ -38,6 +49,8 @@ describe("Info:CoreVersion", () => {
         const result = await promise;
 
         await expect(result.currentVersion).toBe("3.0.0");
+        await expect(result.installedVersion).toBe("3.0.0");
+        await expect(result.installedPluginVersion).toBe("3.0.2");
         await expect(result.latestVersion).toBeString();
     }, 10000);
 });
