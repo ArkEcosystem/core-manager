@@ -28,6 +28,7 @@ beforeEach(() => {
 
     sandbox.app.bind(Container.Identifiers.ApplicationVersion).toConstantValue("3.0.0");
     sandbox.app.bind(Identifiers.CLI).toConstantValue(mockCli);
+    sandbox.app.bind(Identifiers.Version).toConstantValue("3.0.1");
 
     action = sandbox.app.resolve(Action);
 });
@@ -51,6 +52,7 @@ describe("Info:CoreVersion", () => {
         await expect(result.currentVersion).toBe("3.0.0");
         await expect(result.installedVersion).toBe("3.0.0");
         await expect(result.latestVersion).toBeString();
+        await expect(result.currentPluginVersion).toBe("3.0.1");
         await expect(result.installedPluginVersion).toBe("3.0.2");
         await expect(result.latestPluginVersion).toBeString();
     }, 10000);

@@ -74,6 +74,8 @@ describe("ServiceProvider", () => {
         setPluginConfiguration(app, serviceProvider, usedDefaults);
 
         await expect(serviceProvider.register()).toResolve();
+
+        expect(app.get(Identifiers.Version)).toBeString();
     });
 
     it("should boot and dispose HTTP server", async () => {
