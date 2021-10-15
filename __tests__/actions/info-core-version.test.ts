@@ -52,8 +52,8 @@ describe("Info:CoreVersion", () => {
         await expect(result.currentVersion).toBe("3.0.0");
         await expect(result.installedVersion).toBe("3.0.0");
         await expect(result.latestVersion).toBeString();
-        await expect(result.currentPluginVersion).toBe("3.0.1");
-        await expect(result.installedPluginVersion).toBe("3.0.2");
-        await expect(result.latestPluginVersion).toBeString();
+        await expect(result.manager.currentVersion).toBe("3.0.1");
+        await expect(result.manager.installedVersion).toBe("3.0.2");
+        await expect(result.manager.latestVersion).toBeString();
     }, 10000);
 });

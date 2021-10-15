@@ -16,7 +16,7 @@ export class Action implements Actions.Action {
     private readonly cli!: Cli.Application;
 
     @Container.inject(Identifiers.Version)
-    private readonly currentPluginVersion!: string;
+    private readonly currentManagerVersion!: string;
 
     public name = "info.coreVersion";
 
@@ -25,9 +25,11 @@ export class Action implements Actions.Action {
             currentVersion: this.app.version(),
             installedVersion: this.getInstalledVersion(),
             latestVersion: await this.getLatestVersion(),
-            currentPluginVersion: this.currentPluginVersion,
-            installedPluginVersion: this.getInstalledPluginVersion(),
-            latestPluginVersion: await this.getLatestPluginVersion(),
+            manager: {
+                currentVersion: this.currentManagerVersion,
+                installedVersion: this.getInstalledManagerVersion(),
+                latestVersion: await this.getLatestManagerVersion(),
+            },
         };
     }
 
@@ -41,11 +43,11 @@ export class Action implements Actions.Action {
         return readJSONSync(require.resolve("@arkecosystem/core-kernel/package.json")).version;
     }
 
-    private async getLatestPluginVersion(): Promise<string> {
+    private async getLatestManagerVersion(): Promise<string> {
         return latestVersion("@arkecosystem/core-manager");
     }
 
-    private getInstalledPluginVersion(): string {
+    private getInstalledManagerVersion(): string {
         return readJSONSync(join(__dirname, "../../package.json")).version;
     }
 
