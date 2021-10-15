@@ -23,6 +23,7 @@ export class Action implements Actions.Action {
             installedVersion: this.getInstalledVersion(),
             latestVersion: await this.getLatestVersion(),
             installedPluginVersion: this.getInstalledPluginVersion(),
+            latestPluginVersion: await this.getLatestPluginVersion(),
         };
     }
 
@@ -34,6 +35,10 @@ export class Action implements Actions.Action {
 
     private getInstalledVersion(): string {
         return readJSONSync(require.resolve("@arkecosystem/core-kernel/package.json")).version;
+    }
+
+    private async getLatestPluginVersion(): Promise<string> {
+        return latestVersion("@arkecosystem/core-manager");
     }
 
     private getInstalledPluginVersion(): string {
