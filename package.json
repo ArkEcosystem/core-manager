@@ -43,7 +43,7 @@
         "typeorm": "0.2.25"
     },
     "devDependencies": {
-        "@arkecosystem/core-test-framework": "^3.0.0",
+        "@arkecosystem/core-test-framework": "^4.0.0-next-1",
         "@babel/core": "^7.9.0",
         "@babel/preset-env": "^7.9.0",
         "@commitlint/cli": "^11.0.0",
@@ -99,10 +99,10 @@
         "uuid": "^8.0.0"
     },
     "peerDependencies": {
-        "@arkecosystem/core": "^3.0.0",
-        "@arkecosystem/core-cli": "^3.0.0",
-        "@arkecosystem/core-kernel": "^3.0.0",
-        "@arkecosystem/crypto": "^3.0.0"
+        "@arkecosystem/core": "4.0.0-next.1",
+        "@arkecosystem/core-cli": "4.0.0-next.1",
+        "@arkecosystem/core-kernel": "4.0.0-next.1",
+        "@arkecosystem/crypto": "4.0.0-next.1"
     },
     "engines": {
         "node": ">=10.x"
