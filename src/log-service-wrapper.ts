@@ -43,4 +43,8 @@ export class LogServiceWrapper implements Contracts.Kernel.Logger {
     public suppressConsoleOutput(suppress: boolean): void {
         this.logger.suppressConsoleOutput(suppress);
     }
+
+    public async dispose(): Promise<void> {
+        await this.logger.dispose();
+    }
 }
