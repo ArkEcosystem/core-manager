@@ -23,6 +23,7 @@ beforeEach(() => {
         info: jest.fn(),
         debug: jest.fn(),
         suppressConsoleOutput: jest.fn(),
+        dispose: jest.fn(),
     };
 
     logServiceWrapper = new LogServiceWrapper(mockLogger, mockDatabase);
@@ -99,5 +100,11 @@ describe("Listener", () => {
         logServiceWrapper.suppressConsoleOutput(true);
 
         expect(mockLogger.suppressConsoleOutput).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call dispose", async () => {
+        await logServiceWrapper.dispose();
+
+        expect(mockLogger.dispose).toHaveBeenCalledTimes(1);
     });
 });
