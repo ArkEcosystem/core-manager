@@ -46,6 +46,9 @@ describe("Process:List", () => {
 
         await expect(promise).toResolve();
 
+        const result = await promise;
+
+        expect(result).toEqual({});
         expect(mockProcessManager.install).toHaveBeenCalledWith(token, network, name, version);
     });
 });

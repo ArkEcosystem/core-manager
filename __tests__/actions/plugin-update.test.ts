@@ -43,8 +43,9 @@ describe("Process:List", () => {
     it("should return plugin list", async () => {
         const promise = action.execute({ name });
 
-        await expect(promise).toResolve();
+        const result = await promise;
 
+        expect(result).toEqual({});
         expect(mockProcessManager.update).toHaveBeenCalledWith(token, network, name);
     });
 });

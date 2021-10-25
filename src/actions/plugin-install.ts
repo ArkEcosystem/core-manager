@@ -30,9 +30,11 @@ export class Action implements Actions.Action {
         required: ["name"],
     };
 
-    public async execute(params: { name: string; version?: string }): Promise<void> {
+    public async execute(params: { name: string; version?: string }): Promise<any> {
         const pluginManager = this.cli.get<Contracts.PluginManager>(CliContainer.Identifiers.PluginManager);
 
-        return await pluginManager.install(this.token, this.network, params.name, params.version);
+        await pluginManager.install(this.token, this.network, params.name, params.version);
+
+        return {};
     }
 }
