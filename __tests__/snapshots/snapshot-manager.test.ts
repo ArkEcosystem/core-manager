@@ -10,14 +10,14 @@ let snapshotsManager: SnapshotsManager;
 
 const mockSnapshotService = {
     dump: () => {
-        return new Promise((resolve) => {
+        return new Promise<void>((resolve) => {
             setTimeout(() => {
                 resolve();
             }, 500);
         });
     },
     restore: () => {
-        return new Promise((resolve) => {
+        return new Promise<void>((resolve) => {
             setTimeout(() => {
                 resolve();
             }, 500);
@@ -40,7 +40,7 @@ describe("Snapshots:Create", () => {
             await expect(snapshotsManager.dump({} as any)).toResolve();
 
             // Delay
-            await new Promise((resolve) => {
+            await new Promise<void>((resolve) => {
                 setTimeout(() => {
                     resolve();
                 }, 800);
@@ -60,7 +60,7 @@ describe("Snapshots:Create", () => {
             await expect(snapshotsManager.restore({} as any)).toResolve();
 
             // Delay
-            await new Promise((resolve) => {
+            await new Promise<void>((resolve) => {
                 setTimeout(() => {
                     resolve();
                 }, 800);

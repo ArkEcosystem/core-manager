@@ -61,7 +61,7 @@ describe("Generate Log", () => {
             zlib.createGunzip(),
         );
 
-        await new Promise((resolve) => {
+        await new Promise<void>((resolve) => {
             stream.on("readable", () => {
                 resolve();
             });

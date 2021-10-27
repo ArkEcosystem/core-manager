@@ -90,7 +90,7 @@ describe("Generate Log", () => {
         expect(existsSync(join(process.env.CORE_PATH_TEMP!, "log-archive", "test.zip"))).toBeFalse();
         expect(existsSync(join(process.env.CORE_PATH_DATA!, "log-archive", "test.zip"))).toBeFalse();
 
-        await new Promise((resolve) => {
+        await new Promise<void>((resolve) => {
             setTimeout(() => {
                 resolve();
             }, 200);
@@ -137,7 +137,7 @@ describe("Generate Log", () => {
         expect(existsSync(join(process.env.CORE_PATH_TEMP!, "log-archive", "test.zip"))).toBeFalse();
         expect(existsSync(join(process.env.CORE_PATH_DATA!, "log-archive", "test.zip"))).toBeFalse();
 
-        await new Promise((resolve) => {
+        await new Promise<void>((resolve) => {
             setTimeout(() => {
                 resolve();
             }, 200);
