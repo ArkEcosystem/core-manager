@@ -9,7 +9,7 @@
         "experimentalDecorators": true,
         "forceConsistentCasingInFileNames": true,
         "lib": ["es2019"],
-        "module": "commonjs",
+        "module": "CommonJS",
         "moduleResolution": "node",
         "newLine": "lf",
         "noEmitOnError": true,
@@ -26,7 +26,8 @@
         "stripInternal": true,
         "outDir": "dist",
         "target": "es2019",
-        "typeRoots": ["reflect-metadata", "node_modules/@types"]
+        "typeRoots": ["reflect-metadata", "node_modules/@types"],
+        "useUnknownInCatchVariables": false
     },
     "include": ["src/**/**.ts"],
     "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"]
