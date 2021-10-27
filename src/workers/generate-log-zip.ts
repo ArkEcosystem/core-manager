@@ -7,7 +7,7 @@ import { LogTransformStream } from "./log-transform-stream";
 
 export class GenerateLogZip extends GenerateLog {
     public async execute(): Promise<void> {
-        await new Promise(async (resolve, reject) => {
+        await new Promise<void>(async (resolve, reject) => {
             const writeStream = this.prepareOutputStream();
 
             writeStream.on("close", () => {
