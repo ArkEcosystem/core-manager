@@ -10,7 +10,7 @@ export class Action implements Actions.Action {
 
     public async execute(params: any): Promise<any> {
         let response = {
-            height: await this.getNodeHeight(Utils.getConnectionData()),
+            height: await this.getHeight(Utils.getConnectionData()),
         };
 
         try {
@@ -18,39 +18,55 @@ export class Action implements Actions.Action {
                 ...response,
                 ...(await this.prepareRandomNodeHeight()),
             };
-        } catch (e) {}
+        } catch {}
 
         return response;
     }
 
-    private async getNodeHeight(connectionData: ConnectionData): Promise<number> {
+    private async getHeight(connectionData: ConnectionData): Promise<number> {
         const httpClient = new Utils.HttpClient(connectionData);
 
-        const response = await httpClient.get("/api/blockchain");
+        const response = await httpClient.get("/api/node/status");
 
-        return response.data.block.height;
+        return response.data.now;
     }
 
-    private async getRandomPeer(): Promise<{ ip: string; height: number }> {
+    private async getPeers(): Promise<ConnectionData[]> {
         const httpClient = new Utils.HttpClient(Utils.getConnectionData());
 
         const response = await httpClient.get("/api/peers");
 
-        const data = response.data;
+        const peers = response.data
+            .map((peer) => {
+                return {
+                    ip: peer.ip,
+                    port: peer.ports["@arkecosystem/core-api"],
+                    protocol: "http"
+                };
+            })
+            .filter((peer: ConnectionData) => peer.port && peer.port > 0);
 
-        if (data.length) {
-            return data[Math.floor(Math.random() * data.length)];
+        if (!peers.length) {
+            throw new Error("No peers found.");
         }
 
-        throw new Error("No peers found.");
+        return peers;
     }
 
     private async prepareRandomNodeHeight(): Promise<{ randomNodeHeight: number; randomNodeIp: string }> {
-        const peer = await this.getRandomPeer();
+        const peers = await this.getPeers();
 
-        return {
-            randomNodeHeight: peer.height,
-            randomNodeIp: peer.ip,
-        };
+        for(let i = 0; i < 3; i++) {
+            const peer = peers[Math.floor(Math.random() * peers.length)];
+
+            try {
+                return {
+                    randomNodeHeight: await this.getHeight(peer),
+                    randomNodeIp: peer.ip,
+                };
+            } catch {}
+        }
+
+        throw new Error("No responsive peers");
     }
 }
