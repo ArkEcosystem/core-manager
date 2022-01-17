@@ -21,9 +21,7 @@ export class CliManager {
 
         const argv = parseArgvString(args);
 
-        if (argv.length === 0) {
-            argv.push("");
-        }
+        argv.push("--skipPrompts=true");
 
         argv.unshift(name);
 
