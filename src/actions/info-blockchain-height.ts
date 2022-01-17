@@ -9,9 +9,15 @@ export class Action implements Actions.Action {
     public name = "info.blockchainHeight";
 
     public async execute(params: any): Promise<any> {
-        let response = {
-            height: await this.getHeight(Utils.getConnectionData()),
-        };
+        let response = {};
+
+        try {
+            response = {
+                height: await this.getHeight(Utils.getConnectionData()),
+            }
+        } catch {
+            throw new Error("ERR_NO_RELAY");
+        }
 
         try {
             response = {
