@@ -49,13 +49,13 @@ describe("Info:BlockchainHeight", () => {
         expect(result).toEqual({ height: 10, randomNodeHeight: 10, randomNodeIp: "0.0.0.0" });
     });
 
-    it("should throw /get/status on host throws", async () => {
+    it("should throw ERR_NO_RELAY if host no response from host", async () => {
         jest.spyOn(HttpClient.prototype, "get")
             .mockImplementation(async () => {
                 throw new Error("dummy");
             })
 
-        await expect(action.execute({})).rejects.toThrowError("dummy");
+        await expect(action.execute({})).rejects.toThrowError("ERR_NO_RELAY");
     })
 
     it("should return only height if no peers with enabled api", async () => {
@@ -73,18 +73,14 @@ describe("Info:BlockchainHeight", () => {
         expect(result.randomNodeIp).toBeUndefined();
     });
 
-    it("should return only height if /api/peers/ throws", async () => {
+    it("should return ERR_NO_RELAY height if /api/peers/ throws", async () => {
         jest.spyOn(HttpClient.prototype, "get")
             .mockResolvedValueOnce(mockStatusResponse)
             .mockImplementation(async () => {
                 throw new Error("dummy");
             })
 
-        const result = await action.execute({});
-
-        expect(result).toEqual({ height: 10 });
-        expect(result.randomNodeHeight).toBeUndefined();
-        expect(result.randomNodeIp).toBeUndefined();
+        await expect(action.execute({})).rejects.toThrowError("ERR_NO_RELAY");
     });
 
     it("should try to call peer 3 times", async () => {
