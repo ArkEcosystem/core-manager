@@ -9,14 +9,23 @@ export class Action implements Actions.Action {
     public name = "info.blockchainHeight";
 
     public async execute(params: any): Promise<any> {
-        let response = {
-            height: await this.getHeight(Utils.getConnectionData()),
-        };
+        let response = {};
+        let peers: ConnectionData[];
+
+        try {
+            response = {
+                height: await this.getHeight(Utils.getConnectionData()),
+            }
+
+            peers = await this.getPeers();
+        } catch {
+            throw new Error("ERR_NO_RELAY");
+        }
 
         try {
             response = {
                 ...response,
-                ...(await this.prepareRandomNodeHeight()),
+                ...(await this.prepareRandomNodeHeight(peers)),
             };
         } catch {}
 
@@ -36,7 +45,7 @@ export class Action implements Actions.Action {
 
         const response = await httpClient.get("/api/peers");
 
-        const peers = response.data
+        return response.data
             .map((peer) => {
                 return {
                     ip: peer.ip,
@@ -45,16 +54,12 @@ export class Action implements Actions.Action {
                 };
             })
             .filter((peer: ConnectionData) => peer.port && peer.port > 0);
+    }
 
+    private async prepareRandomNodeHeight(peers: ConnectionData[]): Promise<{ randomNodeHeight: number; randomNodeIp: string }> {
         if (!peers.length) {
             throw new Error("No peers found.");
         }
-
-        return peers;
-    }
-
-    private async prepareRandomNodeHeight(): Promise<{ randomNodeHeight: number; randomNodeIp: string }> {
-        const peers = await this.getPeers();
 
         for(let i = 0; i < 3; i++) {
             const peer = peers[Math.floor(Math.random() * peers.length)];
