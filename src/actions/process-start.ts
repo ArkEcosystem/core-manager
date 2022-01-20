@@ -25,7 +25,15 @@ export class Action implements Actions.Action {
     };
 
     public async execute(params: { name: string; args: string }): Promise<any> {
-        await this.cliManager.runCommand(`${params.name}:start`, params.args);
+        try {
+            await this.cliManager.runCommand(`${params.name}:start`, params.args);
+        } catch (err) {
+            if (err.message === "We were unable to detect a BIP38 or BIP39 passphrase.") {
+                throw new Error("ERR_NO_KEY");
+            }
+
+            throw err;
+        }
         return {};
     }
 }
