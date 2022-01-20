@@ -1,5 +1,4 @@
 import { Container } from "@arkecosystem/core-kernel";
-import { Exceptions } from "@arkecosystem/core";
 
 import { Actions } from "../contracts";
 import { Identifiers } from "../ioc";
@@ -29,7 +28,7 @@ export class Action implements Actions.Action {
         try {
             await this.cliManager.runCommand(`${params.name}:start`, params.args);
         } catch (err) {
-            if (err instanceof Exceptions.Crypto.PassphraseNotDetected) {
+            if (err.message === "We were unable to detect a BIP38 or BIP39 passphrase.") {
                 throw new Error("ERR_NO_KEY");
             }
 
