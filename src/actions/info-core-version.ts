@@ -1,17 +1,15 @@
 import * as Cli from "@arkecosystem/core-cli";
-import { Application, Container } from "@arkecosystem/core-kernel";
+import { Container } from "@arkecosystem/core-kernel";
 import { readJSONSync } from "fs-extra";
 import latestVersion from "latest-version";
 import { join } from "path";
 
 import { Actions } from "../contracts";
 import { Identifiers } from "../ioc";
+import {Container as CliContainer, Services} from "@arkecosystem/core-cli";
 
 @Container.injectable()
 export class Action implements Actions.Action {
-    @Container.inject(Container.Identifiers.Application)
-    private readonly app!: Application;
-
     @Container.inject(Identifiers.CLI)
     private readonly cli!: Cli.Application;
 
@@ -22,7 +20,7 @@ export class Action implements Actions.Action {
 
     public async execute(params: object): Promise<any> {
         return {
-            currentVersion: this.app.version(),
+            currentVersion: this.getCurrentVersion(),
             installedVersion: this.getInstalledVersion(),
             latestVersion: await this.getLatestVersion(),
             manager: {
@@ -31,6 +29,26 @@ export class Action implements Actions.Action {
                 latestVersion: await this.getLatestManagerVersion(),
             },
         };
+    }
+
+    private getCurrentVersion(): string | undefined {
+        const processManager = this.cli.get<Services.ProcessManager>(CliContainer.Identifiers.ProcessManager);
+
+        const processList = processManager.list().filter((processInfo) => {
+            return processManager.status(processInfo.name) === Cli.Contracts.ProcessState.Online
+        });
+
+        const coreProcess = processList.find((process) => process.name.includes("core"));
+        if (coreProcess) {
+            return coreProcess.pm2_env.version
+        }
+
+        const relayProcess = processList.find((process) => process.name.includes("relay"));
+        if (relayProcess) {
+            return relayProcess.pm2_env.version
+        }
+
+        return undefined;
     }
 
     private async getLatestVersion(): Promise<string> {

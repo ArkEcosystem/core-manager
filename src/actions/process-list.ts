@@ -23,6 +23,8 @@ export class Action implements Actions.Action {
         const processList = processManager.list();
 
         for (const processInfo of processList) {
+            processInfo.version = processInfo.pm2_env.version;
+
             delete processInfo.pm2_env;
 
             processInfo.monit.memory = Math.round(processInfo.monit.memory / 1024);
