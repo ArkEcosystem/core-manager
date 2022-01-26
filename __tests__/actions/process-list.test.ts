@@ -17,7 +17,9 @@ beforeEach(() => {
         pid: 13477,
         name: "ark-manager",
         pm_id: 0,
-        pm2_env: {},
+        pm2_env: {
+            version: "4.0.0-next.2"
+        },
         monit: {
             memory: 98283520,
             cpu: 0.1,
@@ -68,6 +70,7 @@ describe("Process:List", () => {
                     memory: 95980,
                     cpu: 0.1,
                 },
+                version: "4.0.0-next.2",
                 status: "online",
             },
         ]);
@@ -91,6 +94,7 @@ describe("Process:List", () => {
                     memory: 95980,
                     cpu: 0.1,
                 },
+                version: "4.0.0-next.2",
                 status: "undefined",
             },
         ]);
