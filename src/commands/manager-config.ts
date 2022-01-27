@@ -98,7 +98,7 @@ export class Command extends Commands.Command {
             {
                 type: "text",
                 name: "whitelist",
-                message: "Which IPs can be whitelisted? Separate values with comma. Enter * for all.",
+                message: "Which IPs can be whitelisted? Separate values with a comma. Enter * for all.",
             },
             {
                 type: "select",
