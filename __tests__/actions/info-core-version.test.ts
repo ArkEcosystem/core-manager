@@ -48,6 +48,7 @@ describe("Info:CoreVersion", () => {
     it("should return versions", async () => {
         readJSONSync
             .mockReturnValueOnce({ version: "3.0.0" }) // core-kernel
+            .mockReturnValueOnce({ version: "3.0.2" }) // core-manager
             .mockReturnValueOnce({ version: "3.0.2" }); // core-manager
 
         const promise = action.execute({});
@@ -76,6 +77,7 @@ describe("Info:CoreVersion", () => {
 
         readJSONSync
             .mockReturnValueOnce({ version: "3.0.0" }) // core-kernel
+            .mockReturnValueOnce({ version: "3.0.2" }) // core-manager
             .mockReturnValueOnce({ version: "3.0.2" }); // core-manager
 
         const promise = action.execute({});
@@ -110,6 +112,7 @@ describe("Info:CoreVersion", () => {
 
         readJSONSync
             .mockReturnValueOnce({ version: "3.0.0" }) // core-kernel
+            .mockReturnValueOnce({ version: "3.0.2" }) // core-manager
             .mockReturnValueOnce({ version: "3.0.2" }); // core-manager
 
         const promise = action.execute({});
@@ -124,5 +127,35 @@ describe("Info:CoreVersion", () => {
         await expect(result.manager.currentVersion).toBe("3.0.1");
         await expect(result.manager.installedVersion).toBe("3.0.2");
         await expect(result.manager.latestVersion).toBeString();
+    }, 10000);
+
+    it("should return latest core-manager version", async () => {
+        readJSONSync
+            .mockReturnValueOnce({ version: "3.0.0" }) // core-kernel
+            .mockReturnValueOnce({ version: "3.0.2" }) // core-manager
+            .mockReturnValueOnce({ version: "3.0.2" }); // core-manager
+
+        const promise = action.execute({});
+
+        await expect(promise).toResolve();
+
+        const result = await promise;
+
+        await expect(result.manager.latestVersion).not.toContain("next");
+    }, 10000);
+
+    it("should return next core-manager version", async () => {
+        readJSONSync
+            .mockReturnValueOnce({ version: "3.0.0" }) // core-kernel
+            .mockReturnValueOnce({ version: "3.0.2-next.1" }) // core-manager
+            .mockReturnValueOnce({ version: "3.0.2-next.1" }); // core-manager
+
+        const promise = action.execute({});
+
+        await expect(promise).toResolve();
+
+        const result = await promise;
+
+        await expect(result.manager.latestVersion).toContain("next");
     }, 10000);
 });
