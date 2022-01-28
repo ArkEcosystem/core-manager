@@ -107,7 +107,7 @@ export class Command extends Commands.Command {
                 choices: [
                     { title: "None", value: "none" },
                     { title: "Token", value: "token" },
-                    { title: "Basic", value: "basic" },
+                    { title: "Basic (recommended)", value: "basic" },
                 ],
                 initial: 2,
             },
