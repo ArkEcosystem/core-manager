@@ -17,6 +17,8 @@
         "build:docs": "node_modules/typedoc/bin/typedoc --out docs src",
         "clean": "rimraf dist",
         "compile": "node node_modules/typescript/bin/tsc",
+        "lint": "eslint src --ext .ts --max-warnings 0",
+        "lint:fix": "eslint src --ext .ts --fix",
         "prepublishOnly": "yarn build",
         "test": "jest"
     },
