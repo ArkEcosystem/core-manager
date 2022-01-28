@@ -15,7 +15,7 @@ export class Action implements Actions.Action {
         try {
             response = {
                 height: await this.getHeight(Utils.getConnectionData()),
-            }
+            };
 
             peers = await this.getPeers();
         } catch {
@@ -50,18 +50,20 @@ export class Action implements Actions.Action {
                 return {
                     ip: peer.ip,
                     port: peer.ports["@arkecosystem/core-api"],
-                    protocol: "http"
+                    protocol: "http",
                 };
             })
             .filter((peer: ConnectionData) => peer.port && peer.port > 0);
     }
 
-    private async prepareRandomNodeHeight(peers: ConnectionData[]): Promise<{ randomNodeHeight: number; randomNodeIp: string }> {
+    private async prepareRandomNodeHeight(
+        peers: ConnectionData[],
+    ): Promise<{ randomNodeHeight: number; randomNodeIp: string }> {
         if (!peers.length) {
             throw new Error("No peers found.");
         }
 
-        for(let i = 0; i < 3; i++) {
+        for (let i = 0; i < 3; i++) {
             const peer = peers[Math.floor(Math.random() * peers.length)];
 
             try {

@@ -1,4 +1,5 @@
 import * as Cli from "@arkecosystem/core-cli";
+import { Container as CliContainer, Services } from "@arkecosystem/core-cli";
 import { Container } from "@arkecosystem/core-kernel";
 import { readJSONSync } from "fs-extra";
 import latestVersion from "latest-version";
@@ -6,7 +7,6 @@ import { join } from "path";
 
 import { Actions } from "../contracts";
 import { Identifiers } from "../ioc";
-import {Container as CliContainer, Services} from "@arkecosystem/core-cli";
 
 @Container.injectable()
 export class Action implements Actions.Action {
@@ -35,17 +35,17 @@ export class Action implements Actions.Action {
         const processManager = this.cli.get<Services.ProcessManager>(CliContainer.Identifiers.ProcessManager);
 
         const processList = processManager.list().filter((processInfo) => {
-            return processManager.status(processInfo.name) === Cli.Contracts.ProcessState.Online
+            return processManager.status(processInfo.name) === Cli.Contracts.ProcessState.Online;
         });
 
         const coreProcess = processList.find((process) => process.name.includes("core"));
         if (coreProcess) {
-            return coreProcess.pm2_env.version
+            return coreProcess.pm2_env.version;
         }
 
         const relayProcess = processList.find((process) => process.name.includes("relay"));
         if (relayProcess) {
-            return relayProcess.pm2_env.version
+            return relayProcess.pm2_env.version;
         }
 
         return undefined;
@@ -81,7 +81,7 @@ export class Action implements Actions.Action {
 
     private async getLatestManagerVersion(): Promise<string> {
         return latestVersion("@arkecosystem/core-manager", {
-            version: this.parseChannel(this.getInstalledManagerVersion())
+            version: this.parseChannel(this.getInstalledManagerVersion()),
         });
     }
 }
