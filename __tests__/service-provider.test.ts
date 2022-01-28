@@ -1,13 +1,14 @@
 import "jest-extended";
 
 import { Application, Container, Providers } from "@arkecosystem/core-kernel";
-import { defaults } from "../src/defaults";
-import { Identifiers } from "../src/ioc";
-import { ServiceProvider } from "../src/service-provider";
 import { AnySchema } from "joi";
 import { cloneDeep } from "lodash";
 import path from "path";
 import { dirSync, setGracefulCleanup } from "tmp";
+
+import { defaults } from "../src/defaults";
+import { Identifiers } from "../src/ioc";
+import { ServiceProvider } from "../src/service-provider";
 
 let app: Application;
 

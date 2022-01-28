@@ -1,8 +1,8 @@
 import "jest-extended";
 
 import { generateLogFactory } from "../../src/workers/generate-log-factory";
-import { GenerateLogZip } from "../../src/workers/generate-log-zip";
 import { GenerateLogGz } from "../../src/workers/generate-log-gz";
+import { GenerateLogZip } from "../../src/workers/generate-log-zip";
 
 jest.mock("../../src/workers/generate-log-zip");
 jest.mock("../../src/workers/generate-log-gz");

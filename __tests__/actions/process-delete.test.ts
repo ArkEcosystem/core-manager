@@ -1,8 +1,9 @@
 import "jest-extended";
 
+import { Sandbox } from "@arkecosystem/core-test-framework";
+
 import { Action } from "../../src/actions/process-delete";
 import { Identifiers } from "../../src/ioc";
-import { Sandbox } from "@arkecosystem/core-test-framework";
 
 let sandbox: Sandbox;
 let action: Action;
@@ -37,7 +38,7 @@ describe("Process:Delete", () => {
     it("should resolve", async () => {
         const result = await action.execute({ name: "ark-core" });
 
-        expect(result).toEqual({ });
+        expect(result).toEqual({});
         expect(deleteMethod).toHaveBeenCalled();
     });
 });

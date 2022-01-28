@@ -1,8 +1,9 @@
 import "jest-extended";
 
+import { Sandbox } from "@arkecosystem/core-test-framework";
+
 import { Identifiers } from "../../src/ioc";
 import { CliManager } from "../../src/utils/cli-manager";
-import { Sandbox } from "@arkecosystem/core-test-framework";
 
 let sandbox: Sandbox;
 let cliManager: CliManager;
@@ -47,7 +48,12 @@ describe("CliManager", () => {
         await cliManager.runCommand("command_name", "--network:testnet --token=ark");
 
         expect(mockCommand.register).toHaveBeenCalledTimes(1);
-        expect(mockCommand.register).toHaveBeenCalledWith(["command_name", "--network:testnet", "--token=ark", "--skipPrompts=true"]);
+        expect(mockCommand.register).toHaveBeenCalledWith([
+            "command_name",
+            "--network:testnet",
+            "--token=ark",
+            "--skipPrompts=true",
+        ]);
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
 
@@ -55,7 +61,13 @@ describe("CliManager", () => {
         await cliManager.runCommand("command_name", "--network:testnet --token=ark --password='with spaces'");
 
         expect(mockCommand.register).toHaveBeenCalledTimes(1);
-        expect(mockCommand.register).toHaveBeenCalledWith(["command_name", "--network:testnet", "--token=ark", "--password=with spaces", "--skipPrompts=true"]);
+        expect(mockCommand.register).toHaveBeenCalledWith([
+            "command_name",
+            "--network:testnet",
+            "--token=ark",
+            "--password=with spaces",
+            "--skipPrompts=true",
+        ]);
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
 
@@ -63,23 +75,41 @@ describe("CliManager", () => {
         await cliManager.runCommand("command_name", "--network:testnet --token=ark --password='with_a_space_at_end '");
 
         expect(mockCommand.register).toHaveBeenCalledTimes(1);
-        expect(mockCommand.register).toHaveBeenCalledWith(["command_name", "--network:testnet", "--token=ark", "--password=with_a_space_at_end ", "--skipPrompts=true"]);
+        expect(mockCommand.register).toHaveBeenCalledWith([
+            "command_name",
+            "--network:testnet",
+            "--token=ark",
+            "--password=with_a_space_at_end ",
+            "--skipPrompts=true",
+        ]);
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
 
     it("should run command with a password that contains a double quote", async () => {
-        await cliManager.runCommand("command_name", '--network:testnet --token=ark --password=\'with"doubleQuote\'');
+        await cliManager.runCommand("command_name", "--network:testnet --token=ark --password='with\"doubleQuote'");
 
         expect(mockCommand.register).toHaveBeenCalledTimes(1);
-        expect(mockCommand.register).toHaveBeenCalledWith(["command_name", "--network:testnet", "--token=ark", '--password=with"doubleQuote', "--skipPrompts=true"]);
+        expect(mockCommand.register).toHaveBeenCalledWith([
+            "command_name",
+            "--network:testnet",
+            "--token=ark",
+            '--password=with"doubleQuote',
+            "--skipPrompts=true",
+        ]);
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
 
     it("should run command with a password that contains an escaped quote", async () => {
-        await cliManager.runCommand("command_name", '--network:testnet --token=ark --password=\'with\\\'quote\'');
+        await cliManager.runCommand("command_name", "--network:testnet --token=ark --password='with\\'quote'");
 
         expect(mockCommand.register).toHaveBeenCalledTimes(1);
-        expect(mockCommand.register).toHaveBeenCalledWith(["command_name", "--network:testnet", "--token=ark", "--password=with'quote", "--skipPrompts=true"]);
+        expect(mockCommand.register).toHaveBeenCalledWith([
+            "command_name",
+            "--network:testnet",
+            "--token=ark",
+            "--password=with'quote",
+            "--skipPrompts=true",
+        ]);
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
 
@@ -87,7 +117,13 @@ describe("CliManager", () => {
         await cliManager.runCommand("command_name", "--network:testnet --token=ark --password='with\\backslash'");
 
         expect(mockCommand.register).toHaveBeenCalledTimes(1);
-        expect(mockCommand.register).toHaveBeenCalledWith(["command_name", "--network:testnet", "--token=ark", '--password=with\\backslash', "--skipPrompts=true"]);
+        expect(mockCommand.register).toHaveBeenCalledWith([
+            "command_name",
+            "--network:testnet",
+            "--token=ark",
+            "--password=with\\backslash",
+            "--skipPrompts=true",
+        ]);
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
 

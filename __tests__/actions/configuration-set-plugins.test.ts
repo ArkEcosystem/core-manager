@@ -1,7 +1,8 @@
 import "jest-extended";
 
-import { Action } from "../../src/actions/configuration-set-plugins";
 import { Sandbox } from "@arkecosystem/core-test-framework";
+
+import { Action } from "../../src/actions/configuration-set-plugins";
 
 let sandbox: Sandbox;
 let action: Action;

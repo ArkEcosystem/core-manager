@@ -1,9 +1,10 @@
 import "jest-extended";
 
 import { Container } from "@arkecosystem/core-kernel";
+import { Sandbox } from "@arkecosystem/core-test-framework";
+
 import { Identifiers } from "../../src/ioc";
 import { SnapshotsManager } from "../../src/snapshots/snapshots-manager";
-import { Sandbox } from "@arkecosystem/core-test-framework";
 
 let sandbox: Sandbox;
 let snapshotsManager: SnapshotsManager;

@@ -1,11 +1,11 @@
 import "jest-extended";
 
 import { Container } from "@arkecosystem/core-kernel";
+import { Sandbox } from "@arkecosystem/core-test-framework";
+
 import { Action } from "../../src/actions/info-next-forging-slot";
 import { Identifiers } from "../../src/ioc";
 import { Utils } from "../../src/utils";
-import { Sandbox } from "@arkecosystem/core-test-framework";
-
 import { TriggerResponses } from "../__fixtures__";
 
 let sandbox: Sandbox;

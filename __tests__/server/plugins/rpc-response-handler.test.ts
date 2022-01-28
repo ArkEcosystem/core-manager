@@ -1,26 +1,26 @@
 import "jest-extended";
 
-import { Server as HapiServer } from "@hapi/hapi";
+import { Container } from "@arkecosystem/core-kernel";
+import { Sandbox } from "@arkecosystem/core-test-framework";
+import { Validation } from "@arkecosystem/crypto";
 import * as Boom from "@hapi/boom";
+import { Server as HapiServer } from "@hapi/hapi";
 import * as rpc from "@hapist/json-rpc";
 
-import { Container } from "@arkecosystem/core-kernel";
-import { Validation } from "@arkecosystem/crypto";
-import { Sandbox } from "@arkecosystem/core-test-framework";
-import { Identifiers } from "../../../src/ioc";
-import { Server } from "../../../src/server/server";
 import { ActionReader } from "../../../src/action-reader";
 import { Actions, Plugins } from "../../../src/contracts";
+import { Identifiers } from "../../../src/ioc";
 import { rpcResponseHandler } from "../../../src/server/plugins/rpc-response-handler";
+import { Server } from "../../../src/server/server";
 import { Assets } from "../../__fixtures__";
 
 let sandbox: Sandbox;
 let server: Server;
 
-let mockOnRequest = jest.fn();
+const mockOnRequest = jest.fn();
 
 // @ts-ignore
-let dummyPlugin = {
+const dummyPlugin = {
     name: "dummy",
     version: "0.0.1",
     register: (server: HapiServer) => {
@@ -31,7 +31,7 @@ let dummyPlugin = {
     },
 };
 
-let mockPluginFactory: Plugins.PluginFactory = {
+const mockPluginFactory: Plugins.PluginFactory = {
     preparePlugins() {
         return [
             {
@@ -79,14 +79,14 @@ let mockPluginFactory: Plugins.PluginFactory = {
     },
 };
 
-let logger = {
+const logger = {
     info: jest.fn(),
     notice: jest.fn(),
     error: jest.fn(),
 };
 
 beforeEach(() => {
-    let actionReader: Partial<ActionReader> = {
+    const actionReader: Partial<ActionReader> = {
         discoverActions(): Actions.Method[] {
             return [Assets.dummyMethod];
         },

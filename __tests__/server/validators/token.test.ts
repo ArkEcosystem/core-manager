@@ -1,9 +1,10 @@
 import "jest-extended";
 
 import { Container } from "@arkecosystem/core-kernel";
+import { Sandbox } from "@arkecosystem/core-test-framework";
+
 import { Identifiers } from "../../../src/ioc/identifiers";
 import { SimpleTokenValidator } from "../../../src/server/validators/token";
-import { Sandbox } from "@arkecosystem/core-test-framework";
 
 let sandbox: Sandbox;
 let validator;

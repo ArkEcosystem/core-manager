@@ -1,7 +1,6 @@
 import "jest-extended";
 
 import { parseProcessActionResponse } from "../../src/utils/process-actions";
-
 import { TriggerResponses } from "../__fixtures__";
 
 describe("ParseProcessActionResponse", () => {
@@ -36,8 +35,7 @@ describe("ParseProcessActionResponse", () => {
         expect(() => {
             // @ts-ignore
             parseProcessActionResponse({
-                stdout:
-                    '1 processes have received command forger.currentDelegate\n[ark-core:0:default]={"rank":16,"username":"genesis_25"}', // Missing response
+                stdout: '1 processes have received command forger.currentDelegate\n[ark-core:0:default]={"rank":16,"username":"genesis_25"}', // Missing response
             });
         }).toThrow("Invalid process action response");
     });

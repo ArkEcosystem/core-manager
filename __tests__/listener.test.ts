@@ -1,8 +1,9 @@
 import "jest-extended";
 
 import { Container } from "@arkecosystem/core-kernel";
-import { Listener } from "../src/listener";
 import { Sandbox } from "@arkecosystem/core-test-framework";
+
+import { Listener } from "../src/listener";
 
 let sandbox: Sandbox;
 let listener: Listener;
@@ -35,8 +36,7 @@ beforeEach(() => {
     sandbox = new Sandbox();
 
     sandbox.app.bind(Container.Identifiers.PluginConfiguration).toConstantValue({
-        getRequired: jest.fn().mockImplementation((name) =>
-        {
+        getRequired: jest.fn().mockImplementation((name) => {
             const field = name.split(".")[2];
             return mockWatchDefaults[field];
         }),

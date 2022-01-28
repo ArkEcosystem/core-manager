@@ -2,9 +2,10 @@ import "jest-extended";
 
 import { Container, Providers } from "@arkecosystem/core-kernel";
 import { Sandbox } from "@arkecosystem/core-test-framework";
-import { WorkerManager } from "../../src/workers/worker-manager";
 import { EventEmitter } from "events";
 import { Worker } from "worker_threads";
+
+import { WorkerManager } from "../../src/workers/worker-manager";
 
 jest.mock("worker_threads");
 

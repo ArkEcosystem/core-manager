@@ -1,8 +1,9 @@
 import "jest-extended";
 
-import { Action } from "../../src/actions/configuration-get-plugins";
 import { Sandbox } from "@arkecosystem/core-test-framework";
 import fs from "fs-extra";
+
+import { Action } from "../../src/actions/configuration-get-plugins";
 
 let sandbox: Sandbox;
 let action: Action;

@@ -1,11 +1,12 @@
 import "jest-extended";
 
-import { Sandbox } from "@arkecosystem/core-test-framework";
+import * as Cli from "@arkecosystem/core-cli";
 import { Container } from "@arkecosystem/core-kernel";
+import { Sandbox } from "@arkecosystem/core-test-framework";
+import { readJSONSync } from "fs-extra";
+
 import { Action } from "../../src/actions/info-core-version";
 import { Identifiers } from "../../src/ioc";
-import {readJSONSync} from "fs-extra";
-import * as Cli from "@arkecosystem/core-cli";
 
 jest.mock("fs-extra", () => {
     return {
@@ -22,7 +23,7 @@ const mockCliConfig = {
 
 const mockProcessManager = {
     list: jest.fn().mockReturnValue([]),
-    status: jest.fn().mockReturnValue(Cli.Contracts.ProcessState.Online)
+    status: jest.fn().mockReturnValue(Cli.Contracts.ProcessState.Online),
 };
 
 const mockCli = {
@@ -70,10 +71,10 @@ describe("Info:CoreVersion", () => {
             {
                 name: "ark-relay",
                 pm2_env: {
-                    version: "4.0.0"
-                }
-            }
-        ])
+                    version: "4.0.0",
+                },
+            },
+        ]);
 
         readJSONSync
             .mockReturnValueOnce({ version: "3.0.0" }) // core-kernel
@@ -99,16 +100,16 @@ describe("Info:CoreVersion", () => {
             {
                 name: "ark-core",
                 pm2_env: {
-                    version: "4.0.1"
-                }
+                    version: "4.0.1",
+                },
             },
             {
                 name: "ark-relay",
                 pm2_env: {
-                    version: "4.0.0"
-                }
-            }
-        ])
+                    version: "4.0.0",
+                },
+            },
+        ]);
 
         readJSONSync
             .mockReturnValueOnce({ version: "3.0.0" }) // core-kernel

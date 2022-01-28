@@ -1,8 +1,9 @@
 import { Container } from "@arkecosystem/core-cli";
 import { Console } from "@arkecosystem/core-test-framework";
-import { Command } from "../../src/commands/manager-start";
 import os from "os";
 import { dirSync, setGracefulCleanup } from "tmp";
+
+import { Command } from "../../src/commands/manager-start";
 
 let cli;
 let processManager;

@@ -2,6 +2,7 @@ import "jest-extended";
 
 import { Container } from "@arkecosystem/core-cli";
 import { Console } from "@arkecosystem/core-test-framework";
+
 import { Command } from "../../src/commands/manager-status";
 
 let cli;

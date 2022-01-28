@@ -19,6 +19,8 @@
         "compile": "node node_modules/typescript/bin/tsc",
         "lint": "eslint src --ext .ts --max-warnings 0",
         "lint:fix": "eslint src --ext .ts --fix",
+        "lint:tests": "eslint __tests__ --ext .ts --max-warnings 0",
+        "lint:tests:fix": "eslint __tests__ --ext .ts --fix",
         "prepublishOnly": "yarn build",
         "test": "jest"
     },
