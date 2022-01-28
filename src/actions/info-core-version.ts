@@ -51,25 +51,37 @@ export class Action implements Actions.Action {
         return undefined;
     }
 
-    private async getLatestVersion(): Promise<string> {
-        return latestVersion("@arkecosystem/core", {
-            version: this.getChannel(),
-        });
+    private getChannel(): string {
+        return this.cli.resolve(Cli.Services.Config).get("channel");
+    }
+
+    private parseChannel(version: string): string {
+        const channel = version.replace(/[^a-z]/gi, "");
+
+        if (!channel) {
+            return "latest";
+        }
+
+        return channel;
     }
 
     private getInstalledVersion(): string {
         return readJSONSync(require.resolve("@arkecosystem/core-kernel/package.json")).version;
     }
 
-    private async getLatestManagerVersion(): Promise<string> {
-        return latestVersion("@arkecosystem/core-manager");
+    private async getLatestVersion(): Promise<string> {
+        return latestVersion("@arkecosystem/core", {
+            version: this.getChannel(),
+        });
     }
 
     private getInstalledManagerVersion(): string {
         return readJSONSync(join(__dirname, "../../package.json")).version;
     }
 
-    private getChannel(): string {
-        return this.cli.resolve(Cli.Services.Config).get("channel");
+    private async getLatestManagerVersion(): Promise<string> {
+        return latestVersion("@arkecosystem/core-manager", {
+            version: this.parseChannel(this.getInstalledManagerVersion())
+        });
     }
 }
