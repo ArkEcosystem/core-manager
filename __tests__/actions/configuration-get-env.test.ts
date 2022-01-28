@@ -1,8 +1,9 @@
 import "jest-extended";
 
 import { Container } from "@arkecosystem/core-kernel";
-import { Action } from "../../src/actions/configuration-get-env";
 import { Sandbox } from "@arkecosystem/core-test-framework";
+
+import { Action } from "../../src/actions/configuration-get-env";
 
 let sandbox: Sandbox;
 let action: Action;

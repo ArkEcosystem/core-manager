@@ -1,9 +1,10 @@
 import "jest-extended";
 
-import { Action } from "../../src/actions/info-blockchain-height";
-import { HttpClient } from "../../src/utils/http-client";
 import { Sandbox } from "@arkecosystem/core-test-framework";
 import cloneDeep from "lodash.clonedeep";
+
+import { Action } from "../../src/actions/info-blockchain-height";
+import { HttpClient } from "../../src/utils/http-client";
 
 let sandbox: Sandbox;
 let action: Action;
@@ -14,15 +15,15 @@ const mockPeersResponse = {
             ip: "0.0.0.0",
             ports: {
                 "@arkecosystem/core-api": 4003,
-            }
+            },
         },
-    ]
-}
+    ],
+};
 const mockStatusResponse = {
     data: {
-        now: 10
-    }
-}
+        now: 10,
+    },
+};
 
 beforeEach(() => {
     sandbox = new Sandbox();
@@ -42,7 +43,7 @@ describe("Info:BlockchainHeight", () => {
         jest.spyOn(HttpClient.prototype, "get")
             .mockResolvedValueOnce(mockStatusResponse)
             .mockResolvedValueOnce(mockPeersResponse)
-            .mockResolvedValueOnce(mockStatusResponse)
+            .mockResolvedValueOnce(mockStatusResponse);
 
         const result = await action.execute({});
 
@@ -50,21 +51,20 @@ describe("Info:BlockchainHeight", () => {
     });
 
     it("should throw ERR_NO_RELAY if host no response from host", async () => {
-        jest.spyOn(HttpClient.prototype, "get")
-            .mockImplementation(async () => {
-                throw new Error("dummy");
-            })
+        jest.spyOn(HttpClient.prototype, "get").mockImplementation(async () => {
+            throw new Error("dummy");
+        });
 
         await expect(action.execute({})).rejects.toThrowError("ERR_NO_RELAY");
-    })
+    });
 
     it("should return only height if no peers with enabled api", async () => {
-        const tmpMockPeersResponse = cloneDeep(mockPeersResponse)
-        tmpMockPeersResponse.data[0].ports["@arkecosystem/core-api"] = -1
+        const tmpMockPeersResponse = cloneDeep(mockPeersResponse);
+        tmpMockPeersResponse.data[0].ports["@arkecosystem/core-api"] = -1;
 
         jest.spyOn(HttpClient.prototype, "get")
             .mockResolvedValueOnce(mockStatusResponse)
-            .mockResolvedValueOnce(tmpMockPeersResponse)
+            .mockResolvedValueOnce(tmpMockPeersResponse);
 
         const result = await action.execute({});
 
@@ -78,18 +78,19 @@ describe("Info:BlockchainHeight", () => {
             .mockResolvedValueOnce(mockStatusResponse)
             .mockImplementation(async () => {
                 throw new Error("dummy");
-            })
+            });
 
         await expect(action.execute({})).rejects.toThrowError("ERR_NO_RELAY");
     });
 
     it("should try to call peer 3 times", async () => {
-        const spyOnGet = jest.spyOn(HttpClient.prototype, "get")
+        const spyOnGet = jest
+            .spyOn(HttpClient.prototype, "get")
             .mockResolvedValueOnce(mockStatusResponse)
             .mockResolvedValueOnce(mockPeersResponse)
             .mockImplementation(async () => {
                 throw new Error("dummy");
-            })
+            });
 
         const result = await action.execute({});
 

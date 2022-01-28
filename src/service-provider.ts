@@ -6,9 +6,9 @@ import cloneDeep from "lodash.clonedeep";
 import { join } from "path";
 
 import { ActionReader } from "./action-reader";
-import { DatabaseLogger } from "./database-logger";
 import { EventsDatabaseService } from "./database/events-database-service";
 import { LogsDatabaseService } from "./database/logs-database-service";
+import { DatabaseLogger } from "./database-logger";
 import { Identifiers } from "./ioc";
 import { Listener } from "./listener";
 import { LogServiceWrapper } from "./log-service-wrapper";

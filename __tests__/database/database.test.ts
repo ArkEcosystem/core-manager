@@ -1,8 +1,9 @@
 import "jest-extended";
 
-import { Database, Schema } from "../../src/database/database";
 import { existsSync } from "fs-extra";
 import { dirSync, setGracefulCleanup } from "tmp";
+
+import { Database, Schema } from "../../src/database/database";
 
 let database: Database;
 let storagePath: string;

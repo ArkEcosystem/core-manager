@@ -18,7 +18,7 @@ export class DummyAction implements Actions.Action {
     }
 }
 
-let dummyAction = new DummyAction();
+const dummyAction = new DummyAction();
 
 export const dummyMethod: Actions.Method = {
     name: dummyAction.name,

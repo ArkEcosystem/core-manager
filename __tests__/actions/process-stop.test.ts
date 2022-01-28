@@ -1,9 +1,10 @@
 import "jest-extended";
 
 import { ProcessState } from "@arkecosystem/core-cli/dist/contracts";
+import { Sandbox } from "@arkecosystem/core-test-framework";
+
 import { Action } from "../../src/actions/process.stop";
 import { Identifiers } from "../../src/ioc";
-import { Sandbox } from "@arkecosystem/core-test-framework";
 
 let sandbox: Sandbox;
 let action: Action;

@@ -1,6 +1,9 @@
 import "jest-extended";
 
 import { Container, Providers } from "@arkecosystem/core-kernel";
+import { Sandbox } from "@arkecosystem/core-test-framework";
+import { cloneDeep } from "lodash";
+
 import { ActionReader } from "../../src/action-reader";
 import { Actions } from "../../src/contracts";
 import { defaults } from "../../src/defaults";
@@ -8,9 +11,6 @@ import { Identifiers } from "../../src/ioc";
 import { HttpServer } from "../../src/server/http-server";
 import { PluginFactory } from "../../src/server/plugins/plugin-factory";
 import { Argon2id, SimpleTokenValidator } from "../../src/server/validators";
-import { Sandbox } from "@arkecosystem/core-test-framework";
-import { cloneDeep } from "lodash";
-
 import { Assets } from "../__fixtures__";
 
 let sandbox: Sandbox;

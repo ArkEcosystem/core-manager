@@ -1,8 +1,9 @@
 import "jest-extended";
 
-import { Action } from "../../src/actions/info-resources";
 import { Sandbox } from "@arkecosystem/core-test-framework";
 import si from "systeminformation";
+
+import { Action } from "../../src/actions/info-resources";
 
 const dfDiskData = {
     filesystem: "/dev/disk1s1",

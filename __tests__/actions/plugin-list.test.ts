@@ -1,29 +1,29 @@
 import "jest-extended";
 
+import { Container } from "@arkecosystem/core-kernel";
+import { Sandbox } from "@arkecosystem/core-test-framework";
+
 import { Action } from "../../src/actions/plugin-list";
 import { Identifiers } from "../../src/ioc";
-import { Sandbox } from "@arkecosystem/core-test-framework";
-import { Container } from "@arkecosystem/core-kernel";
 
 let sandbox: Sandbox;
 let action: Action;
 
 let mockProcessManager;
 let plugin;
-const token= "ark";
-const network= "testnet";
+const token = "ark";
+const network = "testnet";
 
 beforeEach(() => {
     plugin = {
         name: "@arkecosystem/core",
         version: "3.0.0",
-        path: __dirname
+        path: __dirname,
     };
-
 
     mockProcessManager = {
         list: jest.fn().mockReturnValue([plugin]),
-    }
+    };
 
     const mockCli = {
         get: jest.fn().mockReturnValue(mockProcessManager),
@@ -57,7 +57,7 @@ describe("Process:List", () => {
         expect(result).toEqual([
             {
                 name: plugin.name,
-                version: plugin.version
+                version: plugin.version,
             },
         ]);
         expect(mockProcessManager.list).toHaveBeenCalledWith(token, network);

@@ -1,9 +1,10 @@
 import { Console } from "@arkecosystem/core-test-framework";
-import { Command } from "../../src/commands/manager-config";
 import envfile from "envfile";
 import fs from "fs-extra";
 import prompts from "prompts";
 import { dirSync, setGracefulCleanup } from "tmp";
+
+import { Command } from "../../src/commands/manager-config";
 
 let cli;
 let envFile: string;

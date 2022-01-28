@@ -2,10 +2,11 @@ import "jest-extended";
 
 import { ProcessState } from "@arkecosystem/core-cli/dist/contracts";
 import { Container } from "@arkecosystem/core-kernel";
+import { Sandbox } from "@arkecosystem/core-test-framework";
+
 import { Action } from "../../src/actions/info-core-status";
 import { Identifiers } from "../../src/ioc";
 import { HttpClient } from "../../src/utils/http-client";
-import { Sandbox } from "@arkecosystem/core-test-framework";
 
 let sandbox: Sandbox;
 let action: Action;

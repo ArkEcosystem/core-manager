@@ -1,7 +1,8 @@
 import "jest-extended";
 
-import { HttpClient } from "../../src/utils/http-client";
 import nock from "nock";
+
+import { HttpClient } from "../../src/utils/http-client";
 
 describe("HttpClient", () => {
     describe("get", () => {

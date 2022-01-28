@@ -2,11 +2,12 @@ import "jest-extended";
 
 import { Container } from "@arkecosystem/core-kernel";
 import { Sandbox } from "@arkecosystem/core-test-framework";
-import { Identifiers } from "../../src/ioc";
-import { Server } from "../../src/server/server";
+
 import { ActionReader } from "../../src/action-reader";
-import { PluginFactory } from "../../src/server/plugins/plugin-factory";
 import { defaults } from "../../src/defaults";
+import { Identifiers } from "../../src/ioc";
+import { PluginFactory } from "../../src/server/plugins/plugin-factory";
+import { Server } from "../../src/server/server";
 
 let sandbox: Sandbox;
 let server: Server;

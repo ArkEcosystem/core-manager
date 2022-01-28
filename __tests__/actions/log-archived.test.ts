@@ -1,12 +1,13 @@
 import "jest-extended";
 
 import { Container, Providers } from "@arkecosystem/core-kernel";
-import { Action } from "../../src/actions/log-archived";
-import { Identifiers } from "../../src/ioc";
 import { Sandbox } from "@arkecosystem/core-test-framework";
 import { pathExistsSync } from "fs-extra";
 import { v4 } from "public-ip";
 import { dirSync, setGracefulCleanup } from "tmp";
+
+import { Action } from "../../src/actions/log-archived";
+import { Identifiers } from "../../src/ioc";
 
 jest.mock("fs-extra");
 jest.mock("public-ip");

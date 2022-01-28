@@ -1,11 +1,12 @@
 import "jest-extended";
 
 import { Container } from "@arkecosystem/core-kernel";
-import { Database } from "../../src/database/database";
-import { LogsDatabaseService } from "../../src/database/logs-database-service";
 import { Sandbox } from "@arkecosystem/core-test-framework";
 import { existsSync } from "fs-extra";
 import { dirSync, setGracefulCleanup } from "tmp";
+
+import { Database } from "../../src/database/database";
+import { LogsDatabaseService } from "../../src/database/logs-database-service";
 
 let database: LogsDatabaseService;
 let storagePath: string;

@@ -1,9 +1,10 @@
 import "jest-extended";
 
 import { ProcessState } from "@arkecosystem/core-cli/dist/contracts";
+import { Sandbox } from "@arkecosystem/core-test-framework";
+
 import { Action } from "../../src/actions/process-list";
 import { Identifiers } from "../../src/ioc";
-import { Sandbox } from "@arkecosystem/core-test-framework";
 
 let sandbox: Sandbox;
 let action: Action;
@@ -18,7 +19,7 @@ beforeEach(() => {
         name: "ark-manager",
         pm_id: 0,
         pm2_env: {
-            version: "4.0.0-next.2"
+            version: "4.0.0-next.2",
         },
         monit: {
             memory: 98283520,

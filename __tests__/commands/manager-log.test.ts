@@ -1,4 +1,5 @@
 import { Console } from "@arkecosystem/core-test-framework";
+
 import { Command } from "../../src/commands/manager-log";
 
 let cli;

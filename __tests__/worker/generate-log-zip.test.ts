@@ -1,13 +1,14 @@
 import "jest-extended";
 
-import { Database } from "../../src/database/database";
-import { GenerateLogZip } from "../../src/workers/generate-log-zip";
 import archiver from "archiver";
 import { EventEmitter } from "events";
 import { existsSync } from "fs-extra";
 import { join } from "path";
 import { Readable, Writable } from "stream";
 import { dirSync, setGracefulCleanup } from "tmp";
+
+import { Database } from "../../src/database/database";
+import { GenerateLogZip } from "../../src/workers/generate-log-zip";
 
 jest.mock("../../src/database/database");
 

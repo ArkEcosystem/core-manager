@@ -1,9 +1,10 @@
 import "jest-extended";
 
 import { Container } from "@arkecosystem/core-kernel";
+import { Sandbox } from "@arkecosystem/core-test-framework";
+
 import { DatabaseLogger } from "../src/database-logger";
 import { Identifiers } from "../src/ioc";
-import { Sandbox } from "@arkecosystem/core-test-framework";
 
 let sandbox: Sandbox;
 let databaseLogger: DatabaseLogger;
