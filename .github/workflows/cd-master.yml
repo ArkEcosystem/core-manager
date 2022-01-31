@@ -27,6 +27,6 @@ jobs:
               run: yarn build
 
             - name: Publish to NPM
-              run: pnpm publish --access=public
+              run: pnpm publish --access=public --git-checks=false
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
