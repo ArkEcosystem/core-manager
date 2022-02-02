@@ -40,7 +40,11 @@ describe("CliManager", () => {
         await cliManager.runCommand("command_name");
 
         expect(mockCommand.register).toHaveBeenCalledTimes(1);
-        expect(mockCommand.register).toHaveBeenCalledWith(["command_name", "--skipPrompts=true"]);
+        expect(mockCommand.register).toHaveBeenCalledWith([
+            "command_name",
+            "--skipPrompts=true",
+            "--skipVersionCheck=true",
+        ]);
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
 
@@ -53,6 +57,7 @@ describe("CliManager", () => {
             "--network:testnet",
             "--token=ark",
             "--skipPrompts=true",
+            "--skipVersionCheck=true",
         ]);
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
@@ -67,6 +72,7 @@ describe("CliManager", () => {
             "--token=ark",
             "--password=with spaces",
             "--skipPrompts=true",
+            "--skipVersionCheck=true",
         ]);
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
@@ -81,6 +87,7 @@ describe("CliManager", () => {
             "--token=ark",
             "--password=with_a_space_at_end ",
             "--skipPrompts=true",
+            "--skipVersionCheck=true",
         ]);
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
@@ -95,6 +102,7 @@ describe("CliManager", () => {
             "--token=ark",
             '--password=with"doubleQuote',
             "--skipPrompts=true",
+            "--skipVersionCheck=true",
         ]);
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
@@ -109,6 +117,7 @@ describe("CliManager", () => {
             "--token=ark",
             "--password=with'quote",
             "--skipPrompts=true",
+            "--skipVersionCheck=true",
         ]);
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
@@ -123,6 +132,7 @@ describe("CliManager", () => {
             "--token=ark",
             "--password=with\\backslash",
             "--skipPrompts=true",
+            "--skipVersionCheck=true",
         ]);
         expect(mockCommand.run).toHaveBeenCalledTimes(1);
     });
