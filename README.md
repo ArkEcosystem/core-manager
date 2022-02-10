@@ -1,7 +1,7 @@
 # ARK Core - Manager
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/ARKEcosystem/core/master/banner.png" />
+    <img src="./banner.png" />
 </p>
 
 ## Documentation
