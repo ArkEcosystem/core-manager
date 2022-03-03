@@ -53,6 +53,7 @@ export class Command extends Commands.Command {
         await this.actions.daemonizeProcess(
             {
                 name: `${flags.token}-manager`,
+                // @ts-ignore backward compatibility
                 script: require.main!.filename,
                 args: `manager:run ${Utils.castFlagsToString(flags, ["daemon"])}`,
             },
