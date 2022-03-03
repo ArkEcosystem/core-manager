@@ -36,4 +36,11 @@ describe("Info:CoreUpdate", () => {
         expect(result).toEqual({});
         expect(mockCliManager.runCommand).toHaveBeenCalledWith("update", "--force");
     });
+
+    it("should call start process with --restart flag", async () => {
+        const result = await action.execute({ restart: true });
+
+        expect(result).toEqual({});
+        expect(mockCliManager.runCommand).toHaveBeenCalledWith("update", "--force --restart");
+    });
 });
