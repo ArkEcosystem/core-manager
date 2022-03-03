@@ -11,8 +11,23 @@ export class Action implements Actions.Action {
 
     public name = "info.coreUpdate";
 
-    public async execute(params: object): Promise<any> {
-        await this.cliManager.runCommand("update", "--force");
+    public schema = {
+        type: "object",
+        properties: {
+            restart: {
+                type: "boolean",
+            },
+        },
+    };
+
+    public async execute(params: { restart?: boolean }): Promise<any> {
+        let args = "--force";
+
+        if (params.restart) {
+            args += " --restart";
+        }
+
+        await this.cliManager.runCommand("update", args);
         return {};
     }
 }
